@@ -22,8 +22,9 @@ for i in range(numStudents):
         else:
             # create array with only the 2 students
             comparison = np.array((grades[i],grades[j]))
-            # remove a course if 1 of the students hasn't taken it
-            comparison = comparison[:, np.all(comparison != 0, axis=0)]
+            # removing this line so we can get a more accurate similarity measure
+                # remove a course if 1 of the students hasn't taken it
+                # comparison = comparison[:, np.all(comparison != 0, axis=0)]
             # get similarity of student i and j
             cos[i][j] = np.dot(comparison[0],comparison[1]) / (norm(comparison[0]) * norm(comparison[1]))
 
@@ -38,9 +39,12 @@ mark = int(input("What class mark do you want to predict? "))
 homies = dict(zip([i for i in range(numStudents)],cos[stu]))
 homies = list({k: v for k, v in sorted(homies.items(), key=lambda item: item[1], reverse=True)}.keys())[1:sims+1]
 
+# initialize estimate with mean of user
 predGrade = np.mean(grades[stu][grades[stu] != 0])
 
+# add what is essentially the MSE of each similar student for that given class
 for i in homies:
     predGrade += (grades[i][mark]-np.mean(grades[i][grades[i] !=0])) / len(homies)
 
+# here you go!
 print(predGrade)
