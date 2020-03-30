@@ -1,22 +1,27 @@
 import tkinter as tk
+from tkinter.filedialog import askopenfile
 
 window = tk.Tk()
 window.title("UGrade")
 window.geometry('500x300+700+200')
 
-greeting = tk.Label(window, text="UGrade Grade Predictor", height=2, bg="green", fg="white")
-titleFont = ('default',20,"bold")
-greeting.config(font=titleFont)
-greeting.pack(pady=5, padx=5, fill='x')
-
 def open_file(): 
-    file = penfile(mode ='r', filetypes =[('Python Files', '*.py')]) 
+    file = askopenfile(mode ='r', filetypes =[('Python Files', '*.py')]) 
     if file is not None: 
         content = file.read() 
         print(content) 
-  
+
+namePrompt = tk.Label(window, text="What's your name? ")
+namePrompt.grid(row=0,column=0, sticky=tk.W)
+
+nameEntry = tk.Entry(window)
+nameEntry.grid(row=0,column=1)
+
+filePrompt = tk.Label(window, text="Enter your grades here:   ")
+filePrompt.grid(row=1,column=0, sticky=tk.W)
+
 btn = tk.Button(window, text ='Open', command = lambda:open_file()) 
-btn.pack(side ='top', pady = 10) 
+btn.grid(row=1,column=1)
 
 window.mainloop()
 window.destroy()
