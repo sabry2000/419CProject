@@ -1,17 +1,29 @@
 import csv
 import numpy as np
 from numpy.linalg import norm
+import config
+import ControlledStudent as cs
 
-grades = []
+def predictGrades():
+    grades = []
 
-with open('samples.csv','r') as sampleGrades:
-    gradeReader = csv.reader(sampleGrades)
-    for student in gradeReader:
-        grades.append(student)
+    #appending our controlled students to our numpy array
+    for student in config.controlledStudents:
+        studentgrades = student.getGrades()
+        print(studentgrades)
+        grades.append(studentgrades)
 
-# turning data into a numpy array
-grades = np.array(([i for i in grades if 'class1' not in i]), dtype=float)
-numStudents = grades.shape[0]
+    #appending the experimental student grades to our numpy array
+    for student in config.experimentalStudents:
+        studentgrades = student.firstyearcourses
+        print(studentgrades)
+        grades.append(studentgrades)
+
+    # turning data into a numpy array
+    grades = np.array(([i for i in grades]), dtype=float)
+
+    numStudents = grades.shape[0]
+
 # initializing cosine similarity matrix
 cos = [[0 for i in range(numStudents)] for j in range(numStudents)]
 for i in range(numStudents):
