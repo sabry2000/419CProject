@@ -53,3 +53,6 @@ class ExperimentalStudent:
         self.CHEMinterest = CHEMinterest
         self.firstyearcourses = firstyearcourses
         self.interests = interests
+    
+    def getGrades(self):
+        return self.firstyearcourses
