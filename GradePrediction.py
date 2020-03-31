@@ -60,3 +60,17 @@ for i in homies:
 
 # here you go!
 print(predGrade)
+
+# part of above code to test prediction with cosine function in cos_sim
+def GradeFromCos(cosSim,numSim,student,lecture):
+    
+    homies = dict(zip([i for i in range(numStudents)],cos[stu]))
+    ranks = list({k: v for k, v in sorted(homies.items(), key=lambda item: item[1], reverse=True)}.keys())[1:sims+1]
+    summation = sum(list({k: v for k, v in sorted(homies.items(), key=lambda item: item[1], reverse=True)}.values())[1:sims+1])
+
+    predGrade = np.mean(grades[student][grades[student] != 0])
+
+    for i in ranks:
+        predGrade += (grades[i][lecture] - np.mean(grades[i][grades[i] !=0])) * (homies.get(i)/summation)
+    
+    return predGrade
