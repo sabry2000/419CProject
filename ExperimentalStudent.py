@@ -1,20 +1,40 @@
 class ExperimentalStudent:
-    def __init__(self, values):
-        cosc111 = values[0]
-        cosc121 = values[1]
-        math100 = values[2]
-        math101 = values[3]
-        phys111 = values[4]
-        phys121 = values[5]
-        phys112 = values[6]
-        phys122 = values[7]
-        chem121 = values[8]
-        chem123 = values[9]
-        MATHinterest = values[10]
-        COSCinterest = values[11]
-        CHEMinterest = values[12]
-        PHYSinterest = values[13]
-        BIOLinterest = values[14]
+
+    major = ''
+    cosc111 = 0
+    cosc121 = 0
+    math100 = 0
+    math101 = 0
+    phys111 = 0
+    phys121 = 0
+    biol116 = 0
+    biol125 = 0
+    chem111 = 0
+    chem121 = 0
+    COSCinterest = 0
+    MATHinterest = 0
+    PHYSinterest = 0
+    BIOLinterest = 0
+    CHEMinterest = 0
+    firstyearcourses = []
+    interests = []
+
+    def __init__(self, firstyearcourses, interests):
+        cosc111 = firstyearcourses[0]
+        cosc121 = firstyearcourses[1]
+        math100 = firstyearcourses[2]
+        math101 = firstyearcourses[3]
+        phys111 = firstyearcourses[4]
+        phys121 = firstyearcourses[5]
+        biol116 = firstyearcourses[6]
+        biol125 = firstyearcourses[7]
+        chem111 = firstyearcourses[8]
+        chem121 = firstyearcourses[9]
+        COSCinterest = interests[0]
+        MATHinterest = interests[1]
+        PHYSinterest = interests[2]
+        BIOLinterest = interests[3]
+        CHEMinterest = interests[4]
 
         self.cosc111 = cosc111
         self.cosc121 = cosc121
@@ -22,15 +42,17 @@ class ExperimentalStudent:
         self.math101 = math101
         self.phys111 = phys111
         self.phys121 = phys121
-        self.phys112 = phys112
-        self.phys122 = phys122
+        self.biol116 = biol116
+        self.biol125 = biol125
+        self.chem111 = chem111
         self.chem121 = chem121
-        self.chem123 = chem123
-        self.MATHinterest = MATHinterest
         self.COSCinterest = COSCinterest
-        self.CHEMinterest = CHEMinterest
+        self.MATHinterest = MATHinterest
         self.PHYSinterest = PHYSinterest
         self.BIOLinterest = BIOLinterest
-
-    def __call__(self): 
-        return self
+        self.CHEMinterest = CHEMinterest
+        self.firstyearcourses = firstyearcourses
+        self.interests = interests
+    
+    def getGrades(self):
+        return self.firstyearcourses
