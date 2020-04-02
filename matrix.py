@@ -9,7 +9,6 @@ def createMatrix(data, isStudent):
         matrix = np.array(matrix)    
     else:
         matrix = np.asmatrix(data)
-
     return matrix
 
 def combineMatrices(matrix1, matrix2):
@@ -43,4 +42,3 @@ def getMeans(matrix):
     averages = np.true_divide(matrix.sum(1),(matrix!=0).sum(1))
 
     return averages
-
