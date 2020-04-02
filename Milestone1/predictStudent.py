@@ -1,6 +1,7 @@
 from matrix import *
 from helper import computeSum
 from cos_sim import getCosineSimilarity as getCS
+import extract
 import config
 import array
 
@@ -14,15 +15,10 @@ def predictStudentGrades(controlled, studentGrades):
     grades = combineMatrices(gradesMatrix, controlledGrades)
     weights = getCS(grades)
 
-    print(grades)
-
     #get the averages of both student types
     allAverages = getMeans(grades)
     studentAverage = allAverages[allAverages.shape[0] - 1]
     controlledAverages = allAverages[0:allAverages.shape[0] - 1]
-
-    print(studentAverage)
-    print(controlledAverages)
 
     #get the indices of the missing grades, i.e. where the '0's are
     studentStudied = grades.shape[0]
@@ -44,5 +40,5 @@ def predictStudentGrades(controlled, studentGrades):
     
     return missingGrades
 
-student = [90,100]
-print(predictStudentGrades(config.controlled, student))
+student = [90, 100, 50, 69, 46, 87]
+print(predictStudentGrades(extract.controlled, student))
