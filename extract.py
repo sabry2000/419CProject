@@ -10,9 +10,6 @@ start = 0
 controlledstart = 0
 experimentalstart = 0
 
-#initialize arrays to hold students
-experimental, controlled = [], []
-
 def analyzeCSV(reader):
     global stypeindex, start, controlledstart, experimentalstart
     csv_headings = next(reader)
@@ -20,7 +17,7 @@ def analyzeCSV(reader):
         if element == 'Would you like to participate in Part 1 or Part 2?':
             stypeindex = i
             continue
-        elif element == 'COSC 111?':
+        elif element == 'COSC 111? (if not applicable please type 0)':
             start = i
             continue
         elif element == 'How interested are you in COSC?':

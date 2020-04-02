@@ -1,16 +1,6 @@
-import csv
-import ExperimentalStudent as es
-import ControlledStudent as cs
-import pickle
+#all of the courses that we are studying in this specified order
+loweryearcourses = ['COSC 111','COSC 121','MATH 100','MATH 101','PHYS 111','PHYS 121','BIOL 116','BIOL 125','CHEM 111', 'CHEM 121']
+upperyearcourses = ['COSC222','MATH200','PHYS216', 'BIOL 200', 'CHEM 201']
+allcourses = loweryearcourses + upperyearcourses
 
-#given data
-courses = ['COSC 111','COSC 121','COSC222','MATH 100','MATH 101','MATH200','PHYS 111',
-'PHYS 121','PHYS 112','PHYS 122','PHYS 216', 'CHEM 121','CHEM 123']
-
-majors = ['COSC','MATH','PHYS'], 
-
-#initialize arrays to hold different types of students
-controlledStudents = []
-experimentalStudents = []
-
-student = []
+majors = ['COSC','MATH','PHYS', 'BIOL', 'CHEM']

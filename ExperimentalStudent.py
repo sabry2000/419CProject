@@ -16,20 +16,20 @@ class ExperimentalStudent:
     PHYSinterest = 0
     BIOLinterest = 0
     CHEMinterest = 0
-    firstyearcourses = []
+    loweryearcourses = []
     interests = []
 
-    def __init__(self, firstyearcourses, interests):
-        cosc111 = firstyearcourses[0]
-        cosc121 = firstyearcourses[1]
-        math100 = firstyearcourses[2]
-        math101 = firstyearcourses[3]
-        phys111 = firstyearcourses[4]
-        phys121 = firstyearcourses[5]
-        biol116 = firstyearcourses[6]
-        biol125 = firstyearcourses[7]
-        chem111 = firstyearcourses[8]
-        chem121 = firstyearcourses[9]
+    def __init__(self, loweryearcourses, interests):
+        cosc111 = loweryearcourses[0]
+        cosc121 = loweryearcourses[1]
+        math100 = loweryearcourses[2]
+        math101 = loweryearcourses[3]
+        phys111 = loweryearcourses[4]
+        phys121 = loweryearcourses[5]
+        biol116 = loweryearcourses[6]
+        biol125 = loweryearcourses[7]
+        chem111 = loweryearcourses[8]
+        chem121 = loweryearcourses[9]
         COSCinterest = interests[0]
         MATHinterest = interests[1]
         PHYSinterest = interests[2]
@@ -51,8 +51,8 @@ class ExperimentalStudent:
         self.PHYSinterest = PHYSinterest
         self.BIOLinterest = BIOLinterest
         self.CHEMinterest = CHEMinterest
-        self.firstyearcourses = firstyearcourses
+        self.loweryearcourses = loweryearcourses
         self.interests = interests
     
     def getGrades(self):
-        return self.firstyearcourses
+        return self.loweryearcourses

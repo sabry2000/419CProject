@@ -16,21 +16,21 @@ class ControlledStudent:
     chem111 = 0
     chem121 = 0
     chem201 = 0
-    firstyearcourses = []
+    loweryearcourses = []
     upperyearcourses = []
     
-    def __init__(self, firstyearcourses,upperyearcourses,major):
+    def __init__(self, loweryearcourses,upperyearcourses,major):
         
-        cosc111 = firstyearcourses[0]
-        cosc121 = firstyearcourses[1]
-        math100 = firstyearcourses[2]
-        math101 = firstyearcourses[3]
-        phys111 = firstyearcourses[4]
-        phys121 = firstyearcourses[5]
-        biol116 = firstyearcourses[6]
-        biol125 = firstyearcourses[7]
-        chem111 = firstyearcourses[8]
-        chem121 = firstyearcourses[9]
+        cosc111 = loweryearcourses[0]
+        cosc121 = loweryearcourses[1]
+        math100 = loweryearcourses[2]
+        math101 = loweryearcourses[3]
+        phys111 = loweryearcourses[4]
+        phys121 = loweryearcourses[5]
+        biol116 = loweryearcourses[6]
+        biol125 = loweryearcourses[7]
+        chem111 = loweryearcourses[8]
+        chem121 = loweryearcourses[9]
         cosc222 = upperyearcourses[0]
         math200 = upperyearcourses[1]
         phys216 = upperyearcourses[2]
@@ -53,11 +53,8 @@ class ControlledStudent:
         self.chem111 = chem111
         self.chem121 = chem121
         self.chem201 = chem201
-        self.firstyearcourses = firstyearcourses
+        self.loweryearcourses = loweryearcourses
         self.upperyearcourses = upperyearcourses
     
     def getGrades(self):
-        grades = []
-        grades.extend(self.firstyearcourses)
-        grades.extend(self.upperyearcourses)
-        return grades
+        return self.loweryearcourses + self.upperyearcourses

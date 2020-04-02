@@ -1,13 +1,8 @@
-from extract import controlled as c
-from extract import experimental as e
 import matrix
 import numpy as np
 from numpy.linalg import norm
 
-controlled = matrix.createMatrix(c, False)
-experimental = matrix.createMatrix(e, False)
-
-def getSimilarityMatrix(gradesMatrix):
+def getCosineSimilarity(gradesMatrix):
     numofstudents = gradesMatrix.shape[0]
     # initializing cosine similarity matrix
     cos = [[0 for i in range(numofstudents)] for j in range(numofstudents)]
@@ -28,10 +23,3 @@ def getSimilarityMatrix(gradesMatrix):
                 cos[i][j] = np.dot(comparison[0],comparison[1]) / (norm(comparison[0]) * norm(comparison[1]))
     
     return cos
-
-test = matrix.combineMatrices(controlled, experimental)
-similarityMatrix = getSimilarityMatrix(test)
-print(similarityMatrix)
-
-
-
