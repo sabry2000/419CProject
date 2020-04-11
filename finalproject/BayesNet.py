@@ -2,7 +2,7 @@
 import math
 from pomegranate import *
 
-def generateBayesianNetwork(course_grade, major_average, major_interest):
+def generateBayesianNetwork(course_grade, major_average, major_interest, student_name, course_num):
     
     #get the course grade
     grade = course_grade/100.0
@@ -19,44 +19,42 @@ def generateBayesianNetwork(course_grade, major_average, major_interest):
     majorAverage = DiscreteDistribution({'pass major': majorAvg, 'fail major': 1- majorAvg})                #P = 'Pass, F = 'Fail'
     interests = DiscreteDistribution({'Interested': interest_level, 'Not Interested': 1-interest_level})    #I = 'Interested', NI = 'Not Interested'
 
-    #define experience as the intermediate cpt
     experience = ConditionalProbabilityTable([
-        ['Experienced','0', 'pass major', 0.90],
-        ['Experienced','0', 'fail major', 0.90],
-        ['Experienced','1', 'pass major', 0.90],
-        ['Experienced','1', 'fail major', 0.90],
-        ['Experienced','2', 'pass major', 0.90],
-        ['Experienced','2', 'fail major', 0.90],
-        ['Not Experienced','0', 'pass major', 0.90],
-        ['Not Experienced','0', 'fail major', 0.90],
-        ['Not Experienced','1', 'pass major', 0.90],
-        ['Not Experienced','1', 'fail major', 0.90],
-        ['Not Experienced','2', 'pass major', 0.90],
-        ['Not Experienced','2', 'fail major', 0.90]
+    ['0', 'pass major','Experienced', 0.70],
+    ['0', 'pass major','Not Experienced', 0.30],
+    ['0', 'fail major','Experienced', 0.60],
+    ['0', 'fail major','Not Experienced', 0.40],
+    ['1', 'pass major','Experienced', 0.80],
+    ['1', 'pass major','Not Experienced', 0.20],
+    ['1', 'fail major','Experienced', 0.40],
+    ['1', 'fail major','Not Experienced', 0.60],
+    ['2', 'pass major','Experienced', 0.90],
+    ['2', 'pass major','Not Experienced', 0.10],
+    ['2', 'fail major','Experienced', 0.50],
+    ['2', 'fail major','Not Experienced', 0.50]
     ], [numberOfMajorCourses, majorAverage])
 
     #define the final cpts
     finalGrade = ConditionalProbabilityTable([
-        ['Pass','pass class', 'Experienced', 0.90],
-        ['Pass','pass class', 'Not Experienced', 0.90],
-        ['Pass','fail class', 'Experienced', 0.90],
-        ['Pass','fail class', 'Not Experienced', 0.90],
-        ['Fail','pass class', 'Experienced', 0.90],
-        ['Fail','pass class', 'Not Experienced', 0.90],
-        ['Fail','fail class', 'Experienced', 0.90],
-        ['Fail','fail class', 'Not Experienced', 0.90],
-
+    ['pass class', 'Experienced', 'Pass', 0.95],
+    ['pass class', 'Experienced', 'Fail', 0.05],
+    ['pass class', 'Not Experienced', 'Pass', 0.75],
+    ['pass class', 'Not Experienced', 'Fail', 0.25],
+    ['fail class', 'Experienced', 'Pass', 0.60],
+    ['fail class', 'Experienced', 'Fail', 0.40],
+    ['fail class', 'Not Experienced', 'Pass', 0.40],
+    ['fail class', 'Not Experienced', 'Fail', 0.60]
     ], [predicted_course_grade, experience])
 
     enjoyability = ConditionalProbabilityTable([
-        ['fun','Interested', 'Experienced', 0.90],
-        ['fun','Interested', 'Not Experienced', 0.90],
-        ['fun','Not Interested', 'Experienced', 0.90],
-        ['fun','Not Interested', 'Not Experienced', 0.90],
-        ['not fun','Interested', 'Experienced', 0.90],
-        ['not fun','Interested', 'Not Experienced', 0.90],
-        ['not fun','Not Interested', 'Experienced', 0.90],
-        ['not fun','Not Interested', 'Not Experienced', 0.90],
+    ['Interested', 'Experienced', 'fun', 0.90],
+    ['Interested', 'Experienced', 'not fun', 0.10],
+    ['Interested', 'Not Experienced', 'fun', 0.75],
+    ['Interested', 'Not Experienced', 'not fun', 0.25],
+    ['Not Interested', 'Experienced', 'fun', 0.60],
+    ['Not Interested', 'Experienced', 'not fun', 0.40],
+    ['Not Interested', 'Not Experienced', 'fun', 0.40],
+    ['Not Interested', 'Not Experienced', 'not fun', 0.60]
     ], [interests, experience])
 
     #define states
@@ -69,7 +67,7 @@ def generateBayesianNetwork(course_grade, major_average, major_interest):
     s7 = State( enjoyability, name = "Enjoyability")
 
     #Building the Bayesian Network
-    network = BayesianNetwork("Creating a Bayesian Network for Student %s for Course %s", x, y)
+    network = BayesianNetwork("Creating a Bayesian Network for Student %s for Course %s" % (student_name, course_num))
     network.add_states(s1, s2, s3, s4, s5, s6, s7)
     network.add_edge(s2,s5)
     network.add_edge(s3,s5)
@@ -80,3 +78,5 @@ def generateBayesianNetwork(course_grade, major_average, major_interest):
     network.bake()
 
     return network
+
+#print(generateBayesianNetwork(90,90,3, 'ahmed', 'cosc 222'))
