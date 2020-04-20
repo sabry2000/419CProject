@@ -1,4 +1,4 @@
-![UniNav Banner][finalproject/build/UniNav_banner.png "UniNav"]
+![UniNav Banner][UniNav_banner.png "UniNav"]
 
 # 419CProject
 This is a repository for the COSC 419C Project
