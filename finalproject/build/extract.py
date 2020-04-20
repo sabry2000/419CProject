@@ -5,7 +5,7 @@ from Student import LYStudent as lys
 from Student import UYStudent as uys
 
 #open the csv file
-with open('data/Student Grades Survey.csv','r') as data:
+with open('finalproject\data\Student Grades Survey.csv','r') as data:
     reader = csv.reader(data, delimiter=',')
     
     #initialize variables to help read the csv file
